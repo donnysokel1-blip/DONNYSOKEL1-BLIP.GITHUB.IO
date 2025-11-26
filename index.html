@@ -1,121 +1,79 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight, CheckCircle, Globe, Smartphone, Heart, Zap, Mail, ChevronRight, Play, Mic, Layout, TrendingUp } from 'lucide-react';
-
-const SwipeStudios = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  // Brand Colors
-  const colors = {
-    yellow: '#F9D02D',
-    dark: '#202020',
-    white: '#FFFFFF',
-    gray: '#333333'
-  };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const NavLink = ({ href, children, onClick }) => (
-    <a 
-      href={href} 
-      onClick={(e) => {
-        e.preventDefault();
-        const element = document.querySelector(href);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-          setIsMenuOpen(false);
-        }
-      }}
-      className="text-white hover:text-[#F9D02D] transition-colors duration-300 font-medium tracking-wide uppercase text-sm"
-    >
-      {children}
-    </a>
-  );
-
-  return (
-    <div className="min-h-screen bg-[#202020] text-white font-sans selection:bg-[#F9D02D] selection:text-[#202020]">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swipe Studios</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#202020] text-white font-sans">
+  
+    <div class="min-h-screen bg-[#202020] text-white font-sans selection:bg-[#F9D02D] selection:text-[#202020]">
       
-      {/* Navigation */}
       <nav 
-        className={`fixed w-full z-50 transition-all duration-300 ${
-          isScrolled ? 'bg-[#202020]/95 backdrop-blur-md py-4 shadow-xl border-b border-white/10' : 'bg-transparent py-6'
-        }`}
+        class="fixed w-full z-50 transition-all duration-300 bg-[#202020]/95 backdrop-blur-md py-4 shadow-xl border-b border-white/10"
       >
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-          <div className="flex items-center gap-2 group cursor-pointer">
-            <div className="text-2xl font-bold tracking-tighter flex items-center">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+          <div class="flex items-center gap-2 group cursor-pointer">
+            <div class="text-2xl font-bold tracking-tighter flex items-center">
               SWIPE
-              <span className="text-[#F9D02D] group-hover:translate-x-1 transition-transform duration-300 ml-1">STUDIOS &gt;</span>
+              <span class="text-[#F9D02D] ml-1">STUDIOS &gt;</span>
             </div>
           </div>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-8">
-            <NavLink href="#services">Services</NavLink>
-            <NavLink href="#about">About</NavLink>
-            <NavLink href="#fundraising">Fundraising</NavLink>
+          <div class="hidden md:flex items-center gap-8">
+            <a href="#services" class="text-white hover:text-[#F9D02D] transition-colors duration-300 font-medium tracking-wide uppercase text-sm">Services</a>
+            <a href="#about" class="text-white hover:text-[#F9D02D] transition-colors duration-300 font-medium tracking-wide uppercase text-sm">About</a>
+            <a href="#fundraising" class="text-white hover:text-[#F9D02D] transition-colors duration-300 font-medium tracking-wide uppercase text-sm">Fundraising</a>
             <a 
               href="#contact" 
-              className="px-6 py-2 bg-[#F9D02D] text-[#202020] font-bold text-sm uppercase tracking-wide hover:bg-white transition-colors duration-300 rounded-sm"
+              class="px-6 py-2 bg-[#F9D02D] text-[#202020] font-bold text-sm uppercase tracking-wide hover:bg-white transition-colors duration-300 rounded-sm"
             >
               Start Project
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
           <button 
-            className="md:hidden text-white"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            class="md:hidden text-white"
           >
-            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
           </button>
         </div>
 
-        {/* Mobile Menu Overlay */}
-        {isMenuOpen && (
-          <div className="absolute top-full left-0 w-full bg-[#202020] border-b border-white/10 p-6 flex flex-col gap-6 md:hidden shadow-2xl">
-            <NavLink href="#services">Services</NavLink>
-            <NavLink href="#about">About</NavLink>
-            <NavLink href="#fundraising">Fundraising</NavLink>
-            <NavLink href="#contact">Contact</NavLink>
+        <div class="hidden absolute top-full left-0 w-full bg-[#202020] border-b border-white/10 p-6 flex flex-col gap-6 md:hidden shadow-2xl">
+            <a href="#services" class="text-white hover:text-[#F9D02D] transition-colors duration-300 font-medium tracking-wide uppercase text-sm">Services</a>
+            <a href="#about" class="text-white hover:text-[#F9D02D] transition-colors duration-300 font-medium tracking-wide uppercase text-sm">About</a>
+            <a href="#fundraising" class="text-white hover:text-[#F9D02D] transition-colors duration-300 font-medium tracking-wide uppercase text-sm">Fundraising</a>
+            <a href="#contact" class="text-white hover:text-[#F9D02D] transition-colors duration-300 font-medium tracking-wide uppercase text-sm">Contact</a>
           </div>
-        )}
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 overflow-hidden">
-        {/* Abstract Background Element */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#F9D02D]/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+      <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 overflow-hidden">
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#F9D02D]/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
         
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 border border-[#F9D02D]/30 rounded-full mb-6 bg-[#F9D02D]/5">
-              <span className="w-2 h-2 rounded-full bg-[#F9D02D] animate-pulse"></span>
-              <span className="text-[#F9D02D] text-xs font-bold uppercase tracking-widest">Bridging NY & Jerusalem</span>
+        <div class="max-w-7xl mx-auto relative z-10">
+          <div class="max-w-4xl">
+            <div class="inline-flex items-center gap-2 px-3 py-1 border border-[#F9D02D]/30 rounded-full mb-6 bg-[#F9D02D]/5">
+              <span class="w-2 h-2 rounded-full bg-[#F9D02D] animate-pulse"></span>
+              <span class="text-[#F9D02D] text-xs font-bold uppercase tracking-widest">Bridging NY & Jerusalem</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8">
-              MODERN <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">MARKETING.</span><br />
-              GLOBAL <span className="text-[#F9D02D]">REACH.</span><br />
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8">
+              MODERN <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">MARKETING.</span><br />
+              GLOBAL <span class="text-[#F9D02D]">REACH.</span><br />
               LOCAL SOUL.
             </h1>
             
-            <p className="text-gray-300 text-lg md:text-xl max-w-2xl leading-relaxed mb-10">
+            <p class="text-gray-300 text-lg md:text-xl max-w-2xl leading-relaxed mb-10">
               We bridge the gap between American and Israeli markets with high-impact branding, tech-savvy production, and stress-free management.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#contact" className="px-8 py-4 bg-[#F9D02D] text-[#202020] font-bold text-lg uppercase tracking-wide hover:bg-white hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 group rounded-sm">
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="#contact" class="px-8 py-4 bg-[#F9D02D] text-[#202020] font-bold text-lg uppercase tracking-wide hover:bg-white hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 group rounded-sm">
                 Book a Strategy Call
-                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
               </a>
-              <a href="#services" className="px-8 py-4 border border-white/20 text-white font-bold text-lg uppercase tracking-wide hover:bg-white/5 hover:border-[#F9D02D] transition-all duration-300 flex items-center justify-center rounded-sm">
+              <a href="#services" class="px-8 py-4 border border-white/20 text-white font-bold text-lg uppercase tracking-wide hover:bg-white/5 hover:border-[#F9D02D] transition-all duration-300 flex items-center justify-center rounded-sm">
                 View Services
               </a>
             </div>
@@ -123,209 +81,242 @@ const SwipeStudios = () => {
         </div>
       </section>
 
-      {/* Intro / Who We Are */}
-      <section id="about" className="py-20 bg-[#252525] border-y border-white/5">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+      <section id="about" class="py-20 bg-[#252525] border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
           <div>
-            <h2 className="text-[#F9D02D] text-sm font-bold uppercase tracking-widest mb-3">Who We Are</h2>
-            <h3 className="text-3xl md:text-4xl font-bold mb-6">Innovation Meets Tradition</h3>
-            <p className="text-gray-400 leading-relaxed mb-6">
+            <h2 class="text-[#F9D02D] text-sm font-bold uppercase tracking-widest mb-3">Who We Are</h2>
+            <h3 class="text-3xl md:text-4xl font-bold mb-6">Innovation Meets Tradition</h3>
+            <p class="text-gray-400 leading-relaxed mb-6">
               Swipe Studios isn’t just an agency; we are your bridge. We understand that what works in Monsey might not fly in Jerusalem, and what trends on TikTok might not fit a dinner journal.
             </p>
-            <p className="text-gray-400 leading-relaxed mb-8">
+            <p class="text-gray-400 leading-relaxed mb-8">
               We operate exclusively at the intersection of innovation and tradition. We are young, we are hungry, and we bring a fresh, tech-forward approach to branding, marketing, and fundraising.
             </p>
             
-            <div className="grid grid-cols-2 gap-6">
-              <div className="flex items-start gap-3">
-                <Globe className="text-[#F9D02D] mt-1" />
+            <div class="grid grid-cols-2 gap-6">
+              <div class="flex items-start gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe text-[#F9D02D] mt-1"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
                 <div>
-                  <h4 className="font-bold">Global Mindset</h4>
-                  <p className="text-sm text-gray-500">NY to Jerusalem fluency</p>
+                  <h4 class="font-bold">Global Mindset</h4>
+                  <p class="text-sm text-gray-500">NY to Jerusalem fluency</p>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
-                <Smartphone className="text-[#F9D02D] mt-1" />
+              <div class="flex items-start gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-smartphone text-[#F9D02D] mt-1"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
                 <div>
-                  <h4 className="font-bold">Tech Forward</h4>
-                  <p className="text-sm text-gray-500">TikTok, AI, & Digital First</p>
+                  <h4 class="font-bold">Tech Forward</h4>
+                  <p class="text-sm text-gray-500">TikTok, AI, & Digital First</p>
                 </div>
               </div>
             </div>
           </div>
           
-          <div className="relative">
-            <div className="aspect-square md:aspect-[4/3] bg-gradient-to-br from-[#333] to-[#111] rounded-sm border border-white/10 p-8 flex flex-col justify-center items-center text-center relative overflow-hidden group">
-              <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
-              <Zap size={64} className="text-[#F9D02D] mb-6 group-hover:scale-110 transition-transform duration-500" />
-              <h3 className="text-2xl font-bold mb-2">The Modern Agency</h3>
-              <p className="text-gray-400 text-sm max-w-xs">Stop juggling freelancers. Start building a brand that actually resonates with the next generation.</p>
+          <div class="relative">
+            <div class="aspect-square md:aspect-[4/3] bg-gradient-to-br from-[#333] to-[#111] rounded-sm border border-white/10 p-8 flex flex-col justify-center items-center text-center relative overflow-hidden group">
+              <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap text-[#F9D02D] mb-6 group-hover:scale-110 transition-transform duration-500"><path d="M4 12h14l-4 8 8-8H6l4-8 8 8"/></svg>
+              <h3 class="text-2xl font-bold mb-2">The Modern Agency</h3>
+              <p class="text-gray-400 text-sm max-w-xs">Stop juggling freelancers. Start building a brand that actually resonates with the next generation.</p>
               
-              {/* Decorative elements */}
-              <div className="absolute bottom-0 right-0 w-24 h-24 bg-[#F9D02D] opacity-10 blur-2xl rounded-full"></div>
+              <div class="absolute bottom-0 right-0 w-24 h-24 bg-[#F9D02D] opacity-10 blur-2xl rounded-full"></div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="py-24 px-6 relative">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-[#F9D02D] text-sm font-bold uppercase tracking-widest mb-3">Our Expertise</h2>
-            <h3 className="text-4xl md:text-5xl font-bold">Three Core Pillars</h3>
+      <section id="services" class="py-24 px-6 relative">
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center mb-16">
+            <h2 class="text-[#F9D02D] text-sm font-bold uppercase tracking-widest mb-3">Our Expertise</h2>
+            <h3 class="text-4xl md:text-5xl font-bold">Three Core Pillars</h3>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div class="grid lg:grid-cols-3 gap-8">
             
-            {/* VIP Retainer Card */}
-            <div className="bg-[#2a2a2a] border border-[#F9D02D] p-8 rounded-sm relative group hover:-translate-y-2 transition-transform duration-300 flex flex-col">
-              <div className="absolute top-0 right-0 bg-[#F9D02D] text-[#202020] text-xs font-bold px-3 py-1 uppercase">Most Popular</div>
-              <div className="w-12 h-12 bg-[#F9D02D]/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-[#F9D02D] transition-colors duration-300">
-                <Layout className="text-[#F9D02D] group-hover:text-[#202020]" size={24} />
+            <div class="bg-[#2a2a2a] border border-[#F9D02D] p-8 rounded-sm relative group hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+              <div class="absolute top-0 right-0 bg-[#F9D02D] text-[#202020] text-xs font-bold px-3 py-1 uppercase">Most Popular</div>
+              <div class="w-12 h-12 bg-[#F9D02D]/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-[#F9D02D] transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout text-[#F9D02D] group-hover:text-[#202020]"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" x2="21" y1="9" y2="9"/><line x1="9" x2="9" y1="21" y2="9"/></svg>
               </div>
-              <h3 className="text-2xl font-bold mb-2">The VIP Experience</h3>
-              <p className="text-[#F9D02D] font-mono text-sm mb-4">RETAINER PARTNERSHIP</p>
-              <p className="text-gray-400 text-sm mb-8 flex-grow">
+              <h3 class="text-2xl font-bold mb-2">The VIP Experience</h3>
+              <p class="text-[#F9D02D] font-mono text-sm mb-4">RETAINER PARTNERSHIP</p>
+              <p class="text-gray-400 text-sm mb-8 flex-grow">
                 Your internal marketing department—without the overhead. We take total ownership of your brand, handling deadlines, vendors, and creative execution.
               </p>
               
-              <ul className="space-y-3 mb-8">
-                {['CMO-Level Strategy', 'Full Brand Stewardship', 'Web & Tech Management', 'Social Dominance', 'Vendor Coordination'].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm text-gray-300">
-                    <CheckCircle size={16} className="text-[#F9D02D] flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
+              <ul class="space-y-3 mb-8">
+                <li class="flex items-center gap-3 text-sm text-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle text-[#F9D02D] flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                    CMO-Level Strategy
+                </li>
+                <li class="flex items-center gap-3 text-sm text-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle text-[#F9D02D] flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                    Full Brand Stewardship
+                </li>
+                <li class="flex items-center gap-3 text-sm text-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle text-[#F9D02D] flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                    Web & Tech Management
+                </li>
+                <li class="flex items-center gap-3 text-sm text-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle text-[#F9D02D] flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                    Social Dominance
+                </li>
+                <li class="flex items-center gap-3 text-sm text-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle text-[#F9D02D] flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                    Vendor Coordination
+                </li>
               </ul>
-              <a href="#contact" className="w-full py-3 bg-[#F9D02D] text-[#202020] font-bold text-center uppercase text-sm hover:bg-white transition-colors">Apply for VIP</a>
+              <a href="#contact" class="w-full py-3 bg-[#F9D02D] text-[#202020] font-bold text-center uppercase text-sm hover:bg-white transition-colors">Apply for VIP</a>
             </div>
 
-            {/* Fundraising Card */}
-            <div id="fundraising" className="bg-[#2a2a2a] border border-white/5 hover:border-white/20 p-8 rounded-sm relative group hover:-translate-y-2 transition-transform duration-300 flex flex-col">
-              <div className="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-white/10 transition-colors duration-300">
-                <Heart className="text-white" size={24} />
+            <div id="fundraising" class="bg-[#2a2a2a] border border-white/5 hover:border-white/20 p-8 rounded-sm relative group hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+              <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-white/10 transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart text-white"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
               </div>
-              <h3 className="text-2xl font-bold mb-2">Fundraising Strategy</h3>
-              <p className="text-gray-400 font-mono text-sm mb-4">CAMPAIGNS & DINNERS</p>
-              <p className="text-gray-400 text-sm mb-8 flex-grow">
+              <h3 class="text-2xl font-bold mb-2">Fundraising Strategy</h3>
+              <p class="text-gray-400 font-mono text-sm mb-4">CAMPAIGNS & DINNERS</p>
+              <p class="text-gray-400 text-sm mb-8 flex-grow">
                 From local Shul dinners to global Yeshiva campaigns. We combine emotional storytelling with rigorous technical execution to maximize donations.
               </p>
               
-              <ul className="space-y-3 mb-8">
-                {['Campaign Architecture', 'Platform Tech Setup', 'WhatsApp Distribution', 'Video Storytelling', 'Targeted Ad Management'].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm text-gray-300">
-                    <CheckCircle size={16} className="text-gray-500 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
+              <ul class="space-y-3 mb-8">
+                <li class="flex items-center gap-3 text-sm text-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle text-gray-500 flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                    Campaign Architecture
+                </li>
+                <li class="flex items-center gap-3 text-sm text-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle text-gray-500 flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                    Platform Tech Setup
+                </li>
+                <li class="flex items-center gap-3 text-sm text-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle text-gray-500 flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                    WhatsApp Distribution
+                </li>
+                <li class="flex items-center gap-3 text-sm text-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle text-gray-500 flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                    Video Storytelling
+                </li>
+                <li class="flex items-center gap-3 text-sm text-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle text-gray-500 flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                    Targeted Ad Management
+                </li>
               </ul>
-              <a href="#contact" className="w-full py-3 border border-white/20 text-white font-bold text-center uppercase text-sm hover:bg-white hover:text-[#202020] transition-colors">Start a Campaign</a>
+              <a href="#contact" class="w-full py-3 border border-white/20 text-white font-bold text-center uppercase text-sm hover:bg-white hover:text-[#202020] transition-colors">Start a Campaign</a>
             </div>
 
-            {/* A La Carte Card */}
-            <div className="bg-[#2a2a2a] border border-white/5 hover:border-white/20 p-8 rounded-sm relative group hover:-translate-y-2 transition-transform duration-300 flex flex-col">
-              <div className="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-white/10 transition-colors duration-300">
-                <TrendingUp className="text-white" size={24} />
+            <div class="bg-[#2a2a2a] border border-white/5 hover:border-white/20 p-8 rounded-sm relative group hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+              <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-white/10 transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up text-white"><polyline points="22 7 13.5 15.5 10 12 2 20"/></svg>
               </div>
-              <h3 className="text-2xl font-bold mb-2">Individual Services</h3>
-              <p className="text-gray-400 font-mono text-sm mb-4">A LA CARTE</p>
-              <p className="text-gray-400 text-sm mb-8 flex-grow">
+              <h3 class="text-2xl font-bold mb-2">Individual Services</h3>
+              <p class="text-gray-400 font-mono text-sm mb-4">A LA CARTE</p>
+              <p class="text-gray-400 text-sm mb-8 flex-grow">
                 Specific solutions for specific problems. We deliver speed without sacrificing quality for projects that need a modern touch.
               </p>
               
-              <ul className="space-y-3 mb-8">
-                {['Video Production (Shorts/AI)', 'Podcast Production', 'Web & SEO', 'Visual Identity / Logos', 'Copywriting & Scripts'].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm text-gray-300">
-                    <CheckCircle size={16} className="text-gray-500 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
+              <ul class="space-y-3 mb-8">
+                <li class="flex items-center gap-3 text-sm text-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle text-gray-500 flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                    Video Production (Shorts/AI)
+                </li>
+                <li class="flex items-center gap-3 text-sm text-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle text-gray-500 flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                    Podcast Production
+                </li>
+                <li class="flex items-center gap-3 text-sm text-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle text-gray-500 flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                    Web & SEO
+                </li>
+                <li class="flex items-center gap-3 text-sm text-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle text-gray-500 flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                    Visual Identity / Logos
+                </li>
+                <li class="flex items-center gap-3 text-sm text-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle text-gray-500 flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                    Copywriting & Scripts
+                </li>
               </ul>
-              <a href="#contact" className="w-full py-3 border border-white/20 text-white font-bold text-center uppercase text-sm hover:bg-white hover:text-[#202020] transition-colors">Get a Quote</a>
+              <a href="#contact" class="w-full py-3 border border-white/20 text-white font-bold text-center uppercase text-sm hover:bg-white hover:text-[#202020] transition-colors">Get a Quote</a>
             </div>
 
           </div>
         </div>
       </section>
 
-      {/* Feature Strip */}
-      <section className="bg-[#F9D02D] text-[#202020] py-16">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8 text-center">
-          <div className="flex flex-col items-center">
-            <Smartphone size={32} className="mb-4" />
-            <h4 className="font-bold uppercase tracking-wider mb-2">Social First</h4>
-            <p className="text-sm opacity-80">We speak TikTok & Reels natively.</p>
+      <section class="bg-[#F9D02D] text-[#202020] py-16">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8 text-center">
+          <div class="flex flex-col items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-smartphone mb-4"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+            <h4 class="font-bold uppercase tracking-wider mb-2">Social First</h4>
+            <p class="text-sm opacity-80">We speak TikTok & Reels natively.</p>
           </div>
-          <div className="flex flex-col items-center">
-            <Mic size={32} className="mb-4" />
-            <h4 className="font-bold uppercase tracking-wider mb-2">Podcasts</h4>
-            <p className="text-sm opacity-80">Full audio/video production setup.</p>
+          <div class="flex flex-col items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mic mb-4"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+            <h4 class="font-bold uppercase tracking-wider mb-2">Podcasts</h4>
+            <p class="text-sm opacity-80">Full audio/video production setup.</p>
           </div>
-          <div className="flex flex-col items-center">
-            <Layout size={32} className="mb-4" />
-            <h4 className="font-bold uppercase tracking-wider mb-2">Web Design</h4>
-            <p className="text-sm opacity-80">High-converting digital hubs.</p>
+          <div class="flex flex-col items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout mb-4"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" x2="21" y1="9" y2="9"/><line x1="9" x2="9" y1="21" y2="9"/></svg>
+            <h4 class="font-bold uppercase tracking-wider mb-2">Web Design</h4>
+            <p class="text-sm opacity-80">High-converting digital hubs.</p>
           </div>
-          <div className="flex flex-col items-center">
-            <Mail size={32} className="mb-4" />
-            <h4 className="font-bold uppercase tracking-wider mb-2">Newsletters</h4>
-            <p className="text-sm opacity-80">Retention engines that work.</p>
+          <div class="flex flex-col items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail mb-4"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.9 1.9 0 0 1-2.06 0L2 7"/></svg>
+            <h4 class="font-bold uppercase tracking-wider mb-2">Newsletters</h4>
+            <p class="text-sm opacity-80">Retention engines that work.</p>
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-24 px-6 relative overflow-hidden">
-         {/* Background accent */}
-         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#F9D02D]/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+      <section id="contact" class="py-24 px-6 relative overflow-hidden">
+         <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#F9D02D]/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
 
-        <div className="max-w-4xl mx-auto relative z-10 text-center">
-          <h2 className="text-[#F9D02D] text-sm font-bold uppercase tracking-widest mb-3">Let's Talk</h2>
-          <h3 className="text-4xl md:text-5xl font-bold mb-8">Ready to modernize your mission?</h3>
-          <p className="text-gray-400 text-lg mb-12">
+        <div class="max-w-4xl mx-auto relative z-10 text-center">
+          <h2 class="text-[#F9D02D] text-sm font-bold uppercase tracking-widest mb-3">Let's Talk</h2>
+          <h3 class="text-4xl md:text-5xl font-bold mb-8">Ready to modernize your mission?</h3>
+          <p class="text-gray-400 text-lg mb-12">
             Whether you need a full retainer partner or a single high-impact campaign, we are ready to build.
           </p>
 
-          <div className="bg-[#2a2a2a] p-8 md:p-12 rounded-sm border border-white/5 text-left">
-             <div className="grid md:grid-cols-2 gap-12">
+          <div class="bg-[#2a2a2a] p-8 md:p-12 rounded-sm border border-white/5 text-left">
+             <div class="grid md:grid-cols-2 gap-12">
                 <div>
-                   <h4 className="text-xl font-bold mb-6 text-white">Contact Info</h4>
-                   <div className="space-y-6">
-                      <div className="flex items-center gap-4 group">
-                         <div className="w-10 h-10 bg-[#F9D02D]/10 rounded-full flex items-center justify-center group-hover:bg-[#F9D02D] transition-colors">
-                            <Mail size={18} className="text-[#F9D02D] group-hover:text-[#202020]" />
+                   <h4 class="text-xl font-bold mb-6 text-white">Contact Info</h4>
+                   <div class="space-y-6">
+                      <div class="flex items-center gap-4 group">
+                         <div class="w-10 h-10 bg-[#F9D02D]/10 rounded-full flex items-center justify-center group-hover:bg-[#F9D02D] transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail text-[#F9D02D] group-hover:text-[#202020]"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.9 1.9 0 0 1-2.06 0L2 7"/></svg>
                          </div>
                          <div>
-                            <p className="text-xs text-gray-500 uppercase tracking-wider">Email Us</p>
-                            <a href="mailto:swipestudios.il@gmail.com" className="text-white hover:text-[#F9D02D] transition-colors">swipestudios.il@gmail.com</a>
+                            <p class="text-xs text-gray-500 uppercase tracking-wider">Email Us</p>
+                            <a href="mailto:swipestudios.il@gmail.com" class="text-white hover:text-[#F9D02D] transition-colors">swipestudios.il@gmail.com</a>
                          </div>
                       </div>
-                      <div className="flex items-center gap-4 group">
-                         <div className="w-10 h-10 bg-[#F9D02D]/10 rounded-full flex items-center justify-center group-hover:bg-[#F9D02D] transition-colors">
-                            <Globe size={18} className="text-[#F9D02D] group-hover:text-[#202020]" />
+                      <div class="flex items-center gap-4 group">
+                         <div class="w-10 h-10 bg-[#F9D02D]/10 rounded-full flex items-center justify-center group-hover:bg-[#F9D02D] transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe text-[#F9D02D] group-hover:text-[#202020]"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
                          </div>
                          <div>
-                            <p className="text-xs text-gray-500 uppercase tracking-wider">Visit Us</p>
-                            <a href="https://swipestudios.online" className="text-white hover:text-[#F9D02D] transition-colors">swipestudios.online</a>
+                            <p class="text-xs text-gray-500 uppercase tracking-wider">Visit Us</p>
+                            <a href="https://swipestudios.online" class="text-white hover:text-[#F9D02D] transition-colors">swipestudios.online</a>
                          </div>
                       </div>
                    </div>
                 </div>
 
-                <div className="border-t md:border-t-0 md:border-l border-white/10 pt-8 md:pt-0 md:pl-12">
-                   <h4 className="text-xl font-bold mb-6 text-white">Send a Message</h4>
-                   <form className="space-y-4">
+                <div class="border-t md:border-t-0 md:border-l border-white/10 pt-8 md:pt-0 md:pl-12">
+                   <h4 class="text-xl font-bold mb-6 text-white">Send a Message</h4>
+                   <form class="space-y-4">
                       <div>
-                         <input type="text" placeholder="Name" className="w-full bg-[#202020] border border-white/10 p-3 text-sm text-white focus:outline-none focus:border-[#F9D02D] transition-colors rounded-sm" />
+                         <input type="text" placeholder="Name" class="w-full bg-[#202020] border border-white/10 p-3 text-sm text-white focus:outline-none focus:border-[#F9D02D] transition-colors rounded-sm" />
                       </div>
                       <div>
-                         <input type="email" placeholder="Email" className="w-full bg-[#202020] border border-white/10 p-3 text-sm text-white focus:outline-none focus:border-[#F9D02D] transition-colors rounded-sm" />
+                         <input type="email" placeholder="Email" class="w-full bg-[#202020] border border-white/10 p-3 text-sm text-white focus:outline-none focus:border-[#F9D02D] transition-colors rounded-sm" />
                       </div>
                       <div>
-                         <textarea rows="3" placeholder="Project Details..." className="w-full bg-[#202020] border border-white/10 p-3 text-sm text-white focus:outline-none focus:border-[#F9D02D] transition-colors rounded-sm"></textarea>
+                         <textarea rows="3" placeholder="Project Details..." class="w-full bg-[#202020] border border-white/10 p-3 text-sm text-white focus:outline-none focus:border-[#F9D02D] transition-colors rounded-sm"></textarea>
                       </div>
-                      <button className="w-full py-3 bg-white text-[#202020] font-bold uppercase text-sm hover:bg-[#F9D02D] transition-colors rounded-sm">
+                      <button class="w-full py-3 bg-white text-[#202020] font-bold uppercase text-sm hover:bg-[#F9D02D] transition-colors rounded-sm">
                          Send Request
                       </button>
                    </form>
@@ -335,22 +326,19 @@ const SwipeStudios = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-[#1a1a1a] py-8 border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="text-xl font-bold tracking-tighter flex items-center">
+      <footer class="bg-[#1a1a1a] py-8 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div class="text-xl font-bold tracking-tighter flex items-center">
             SWIPE
-            <span className="text-[#F9D02D] ml-1">STUDIOS</span>
+            <span class="text-[#F9D02D] ml-1">STUDIOS</span>
           </div>
-          <div className="text-gray-500 text-sm">
+          <div class="text-gray-500 text-sm">
             © 2025 Swipe Studios. All Rights Reserved.
           </div>
         </div>
       </footer>
 
     </div>
-  );
-};
-
-export default SwipeStudios;
-
+  
+</body>
+</html>
